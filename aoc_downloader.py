@@ -3,16 +3,15 @@ from pathlib import Path
 import datetime
 import json
 import argparse
-import jinja2
+from string import Template
 
 class aoc_downloader():
     def __init__(self, args) -> None:
-        self.ROOT_DIR = Path(__file__).parent # the advent-of-code-2023 folder
+        self.ROOT_DIR = Path(__file__).parent # the main advent-of-code folder
         self.TODAY = datetime.date.today()
         self.args = args
         self.day = self.args.day if self.args.day is not None else self.TODAY.day
         self.year = self.args.year if self.args.year is not None else self.TODAY.year
-        self.template = self.read_template()
         
         self.create_folder()
         self.get_input()
@@ -26,18 +25,9 @@ class aoc_downloader():
         except:
             print(f"reading config.json failed!")
             raise
-        
-    def read_template(self):
-        try:
-            with open('py_template.txt', 'r') as template_file: template_str = template_file.read()
-        except:
-            print(f"reading python template failed!")
-            raise
-        template = jinja2.Template(template_str)
-        return template
     
     def create_folder(self):
-        folder_path = self.ROOT_DIR / f"day{self.day:0>2}"
+        folder_path = self.ROOT_DIR / f"{self.year}" / f"day{self.day:0>2}"
         if not folder_path.exists():
             folder_path.mkdir()
             return
@@ -45,7 +35,7 @@ class aoc_downloader():
         return
         
     def get_input(self):
-        text_file_path = self.ROOT_DIR / f"day{self.day:0>2}" / f"input.txt"
+        text_file_path = self.ROOT_DIR / f"{self.year}" / f"day{self.day:0>2}" / f"input.txt"
         if not text_file_path.is_file():
             URL = f"https://adventofcode.com/{self.year}/day/{self.day}/input"
             COOKIES = {'session': self.get_session_cookie()}
@@ -64,13 +54,19 @@ class aoc_downloader():
         return
     
     def create_new_py(self):
-        template_data = {
-            'root_folder': self.ROOT_DIR,
-            'day': f"{self.day:0>2}"
-        }
-        py_file_path = self.ROOT_DIR / f"day{self.day:0>2}" / f"day{self.day:0>2}.py"
+        py_file_path = self.ROOT_DIR / f"{self.year}" / f"day{self.day:0>2}" / f"day{self.day:0>2}.py"
+        try:
+            with open('py_template.txt', 'r') as template_file: template_content = template_file.read()
+        except:
+            print(f"reading python template failed!")
+            raise
+        template = Template(template_content)
+        content = template.substitute(
+            root_folder=f"{self.year}",
+            day=f"{self.day:0>2}"
+        )
         if not py_file_path.is_file():
-            with open(py_file_path, "w", encoding="utf-8") as file: file.write(self.template.render(template_data))
+            with open(py_file_path, "w", encoding="utf-8") as file: file.write(content)
             print(f"created python file at {py_file_path}")
             return
         print("python file for current day already exists")

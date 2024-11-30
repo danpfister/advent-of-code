@@ -1,6 +1,6 @@
-# Advent of Code 2023
+# Advent of Code
 
-Solving the [Advent of Code 2023](https://adventofcode.com/2023) in Python.
+Solving the [Advent of Code](https://adventofcode.com) in Python.
 
 ## AOC Downloader
 
@@ -36,10 +36,12 @@ creates the folder and files as follows:
 ```
 advent-of-code/
 |
-|-- day17/
-|     |
-|     |-- input.txt
-|     |-- day17.py
+|-- 2021/
+|    |
+|    |-- day17/
+|         |
+|         |-- input.txt
+|         |-- day17.py
 |
 |-- aoc_downloader.py
 
