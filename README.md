@@ -1,6 +1,6 @@
 # Advent of Code
 
-Solving the [Advent of Code](https://adventofcode.com) in Python.
+Solving the [Advent of Code](https://adventofcode.com) in Python (mostly).
 
 ## AOC Downloader
 
@@ -20,7 +20,7 @@ The [session cookie](https://github.com/wimglenn/advent-of-code-wim/issues/1) ne
 
 ### Usage
 
-Running `python path/to/aoc_downloader.py` creates a directory with the input file inside.
+Running `python aoc_downloader.py` creates a directory with the input file inside.
 
 Passing the optional parameter `--day` or `--year` forces the download for a specific date, otherwise it defaults to the current date (The month is always assumed to be December).
 The optional parameter `--py` adds a templated python file to the created directory.
