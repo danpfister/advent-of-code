@@ -3,3 +3,6 @@ config.json
 
 # input files
 *input.txt
+
+# misc
+.vscode
