@@ -36,7 +36,7 @@ class aoc_downloader():
         
     def get_input(self):
         text_file_path = self.ROOT_DIR / f"{self.year}" / f"day{self.day:0>2}" / f"input.txt"
-        if not text_file_path.is_file():
+        if not text_file_path.is_file() or self.args.force:
             URL = f"https://adventofcode.com/{self.year}/day/{self.day}/input"
             COOKIES = {'session': self.get_session_cookie()}
             PARAMS = {
@@ -77,5 +77,6 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--day', help="force download of specific day", default=None, required=False)
     parser.add_argument('-y', '--year', help="force download of specific year", default=None, required=False)
     parser.add_argument('--py', help='set to create an empty python file', action='store_true', default=False, required=False)
+    parser.add_argument('-f', '--force', help="force overwrite of input.txt", action='store_true', default=False, required=False)
     args = parser.parse_args()
     aoc_downloader(args=args)
