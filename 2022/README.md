@@ -25,10 +25,10 @@ This script produces a directory tree of the input.
 
 Visible trees:
 
-![alt text](https://github.com/danpfister/advent-of-code-2022/blob/main/visuals/08_visible_trees.png?raw=true)
+![alt text](https://github.com/danpfister/advent-of-code-2022/blob/main/2022/visuals/08_visible_trees.png?raw=true)
 
 ### Day 12: Hill Climbing Algorithm
 
 Heightmap of the jungle
 
-![alt text](https://github.com/danpfister/advent-of-code-2022/blob/main/visuals/12_jungle_map.png?raw=true)
+![alt text](https://github.com/danpfister/advent-of-code-2022/blob/main/2022/visuals/12_jungle_map.png?raw=true)
