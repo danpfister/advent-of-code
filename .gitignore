@@ -6,3 +6,6 @@ config.json
 
 # misc
 .vscode
+
+# binaries
+*.exe
